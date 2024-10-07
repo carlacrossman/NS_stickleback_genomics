@@ -19,5 +19,5 @@ This repository is still in development as the analyses continue.
 
 - *other_unsorted/*	This directory contains scripts and lines of code used for other steps and or the nuclear data not yet orgianized/completed
 
-![Data_prep](https://github.com/carlacrossman/stickleback_genomics/Stickleback_data_prep.jpg)
-![mtDNA_analysis](https://github.com/carlacrossman/stickleback_genomics/Stickleback_mtDNA_data_analysis.jpg)
+![Data_prep](https://github.com/carlacrossman/NS_stickleback_genomics/Stickleback_data_prep.jpg)
+![mtDNA_analysis](https://github.com/carlacrossman/NS_stickleback_genomics/Stickleback_mtDNA_data_analysis.jpg)
