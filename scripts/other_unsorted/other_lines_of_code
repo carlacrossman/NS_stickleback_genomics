@@ -1,0 +1,67 @@
+###---MultiQC---###
+
+module load mugqic/MultiQC/1.14
+module load mugqic/python/3.10.4
+multiqc trimmed/ temp_mapping/
+
+###---Depth correction for reducedsubset bam files---###
+
+for ITERATOR in {1..245}
+do
+	SAMPLE=$(sed -n "${ITERATOR}p" ~/scratch/stickleback/sample_list)
+	echo ${SAMPLE}
+	samtools coverage -r NC_041244.1:1-16543 ${SAMPLE}_paired-nodups_mtdna.bam | tail -n 1 >> mtDNA_coverage
+done
+
+
+for ITERATOR in {1..245}
+do
+	SAMPLE=$(sed -n "${ITERATOR}p" ~/scratch/stickleback/sample_list)
+	echo ${SAMPLE}
+	echo ${SAMPLE} >> 22chr_coverage
+	samtools coverage ${SAMPLE}_paired-nodups_22chr.bam | grep ^NC >> 22chr_coverage
+done
+
+###---Merging Autosomal Beagle Files---###
+
+cp 22chr_angsd_sept26_LDpruned_NC_053212.1.beagle.gz 22chr_angsd_sept26_LDpruned_autosomes.beagle.gz
+gunzip 22chr_angsd_sept26_LDpruned_autosomes.beagle.gz
+
+
+for SCAFFOLD in NC_053213.1 NC_053214.1 NC_053215.1 NC_053216.1 NC_053217.1 NC_053218.1 NC_053219.1 NC_053220.1 NC_053221.1 NC_053222.1 NC_053223.1 NC_053224.1 NC_053225.1 NC_053226.1 NC_053227.1 NC_053228.1 NC_053229.1 NC_053231.1 NC_053232.1
+do
+	zcat 22chr_angsd_sept26_LDpruned_${SCAFFOLD}.beagle.gz | tail -n +2 >> 22chr_angsd_sept26_LDpruned_autosomes.beagle
+done
+
+gzip 22chr_angsd_sept26_LDpruned_autosomes.beagle
+
+###---Remove duplicates and negatives from LD pruned beagle files---###
+
+zcat 22chr_angsd_sept26_LDpruned_autosomes.beagle.gz | cut -f  298,299,300,418,419,420,499,500,501,658,659,660,526,527,528,529,530,531,532,533,534 --complement > 22chr_angsd_sept26_LDpruned_autosomes_nodups.beagle
+
+gzip 22chr_angsd_sept26_LDpruned_autosomes_nodups.beagle
+
+###---Merge bcf files---###
+
+module load bcftools/1.19
+
+bcftools concat -f bcf_list -Oz --output 22chr_snps_angsd_sept28.vcf.gz
+
+###---Setup required for PCAngsd---###
+
+module load python/3.11.5
+module load scipy-stack/2024b
+
+git clone https://github.com/Rosemeis/pcangsd.git
+cd pcangsd/
+virtualenv --no-download ENV
+source ENV/bin/activate
+pip install --no-index --upgrade pip
+pip install -r requirements.txt
+
+###---Checking Reproducibility of Genotype Calls---###
+# Ran the following on M159, IR-343-C, MTC30, THA-C
+
+module load bcftools/1.19
+
+bcftools view -s M159-RED_paired-nodups_22chr.bam,M159_paired-nodups_22chr.bam 22chr_snps_angsd_sept28.vcf.gz | bcftools view -e 'GT[*] = "mis"' | bcftools gtcheck -E 0 > M159_repeatability
