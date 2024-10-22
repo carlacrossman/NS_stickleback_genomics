@@ -38,4 +38,4 @@ This repository is still in development as the analyses continue.
   
 ![mtDNA_analysis](https://github.com/carlacrossman/NS_stickleback_genomics/blob/main/Stickleback_mtDNA_data_analysis.jpg)
   
-![nuclear_analysis](https://github.com/carlacrossman/NS_stickleback_genomics/blob/main/stickleback_nuclear_data_analysis.jpg)
+![nuclear_analysis](https://github.com/carlacrossman/NS_stickleback_genomics/blob/main/Stickleback_nuclear_data_analysis.jpg)
