@@ -17,22 +17,19 @@ This repository is still in development as the analyses continue.
 - *2e_consensus_mtdna.sh*	Generate a consensus sequence of the mitogenome for each individual
 - *2f_align_fasta.sh*	Aligning fasta sequences into a single multisequence alignment
   
-- *3a_angsd_first_round.sh*	Generates first genotype likelihood files  
-- *3b_plink_estimate_LD.sh*	Esitmates linkage disequlibrium and prunes snp list  
-- *3c_angsd_drop_linked_sites.sh*	Drops linked SNPs using ANGSD  
-- *3d_merge_autosomal_LDpruned_beagle.sh*	Merge autosomal beagle files  
-- *3e_remove_dups.sh*	Remove duplicate samples  
-- *3f_pcangsd.sh*	Runs PCAngsd  
-- *3g_ngsadmix.sh*	Runs ngsADMIX  
-- *3h_concatenate_bcf.sh*	Concatenate bcf files into a merged vcf  
-- *3i_check_reproducibility.sh*	Measure reproducibility of duplicate samples  
-- *3j_concatenate_beagle_drop_dups.sh*	Concatenate across scaffolds and drop duplicates  
-- *3k_confirm_sexes.sh*	Confirm genetic sexes  
-- *3l_impute_beagle.sh*	Imputation in Beagle  
-- *3m_pairwise_FST_windowed.sh*	Calcualtes pairwise FST (windowed) - also ran on reassigned phenotypes  
-- *3n_angsd_association.sh* Association testing in ANGSD - also ran on reassigned phenotypes  
-
-- *other_unsorted/*	This directory contains scripts and lines of code used for other steps not yet orgianized/completed
+- *3a_angsd_first_round.md*	Generates first genotype likelihood files  
+- *3b_LD_Pruning.md*	Esitmates linkage disequlibrium and prunes snp list  
+- *3c_angsd_pruned.md*	Drops linked SNPs using ANGSD  
+- *3d_pcangsd.md*	Runs PCAngsd 
+- *3e_ngsadmix.md*	Runs ngsADMIX 
+- *3f_sexing.md*	Confirm genetic sexes  
+- *3g_reproducibility.md*	Measure reproducibility of duplicate samples 
+- *3h_outgroup_prep.md*	Prepare the outgroups from .fastq to .bam files 
+- *3i_outgroup_angsd.md* Calculating genotype likelihoods for outgroups  
+- *3j_phylogeny.md*	Calculating genetic distance and building phylogeny  
+- *3k_angsd_SAF.md*	Calculate site allele frequency likelihoods 
+- *3l_generating_SFS.md*	Estimate the SFS  
+- *3m_running_stairwayplot.md*	Running Stairway Plot  
 
 ![Data_prep](https://github.com/carlacrossman/NS_stickleback_genomics/blob/main/Stickleback_data_prep.jpg)
   
