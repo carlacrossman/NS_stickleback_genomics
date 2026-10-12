@@ -30,7 +30,7 @@ This repository is still in development as the analyses continue.
 - *3k_angsd_SAF.md*	Calculate site allele frequency likelihoods 
 - *3l_generating_SFS.md*	Estimate the SFS  
 - *3m_running_stairwayplot.md*	Running Stairway Plot  
-- *3n_pairwise_fst.md*	Calculating pairwise FST
+- *3n_pairwise_fst.md*	Calculating pairwise FST and IBD
 
 ![Data_prep](https://github.com/carlacrossman/NS_stickleback_genomics/blob/main/Stickleback_data_prep.jpg)
   
